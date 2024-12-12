@@ -4,7 +4,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>REST API with CRUD Operations</title>
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        code {
+            background-color: #f1f1f1;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        pre {
+            background-color: #f1f1f1;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        .example {
+            background-color: #e1f7e7;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            padding: 5px 0;
+        }
+    </style>
 </head>
 
 <body>
@@ -170,160 +205,139 @@ app.listen(PORT, () => {
 });
 
     </script>
-    Here is a `README.md` file for your **User Management API** in Node.js and Express.
+        <h1>User Management API</h1>
+    <p>A simple REST API built with Node.js and Express to perform CRUD (Create, Read, Update, Delete) operations on user data. The API allows users to be created, retrieved, updated, and deleted, with all data stored in memory.</p>
 
-```markdown
-# User Management API
+    <h2>API Endpoints</h2>
 
-A simple REST API built with Node.js and Express to perform CRUD (Create, Read, Update, Delete) operations on user data. The API allows users to be created, retrieved, updated, and deleted, with all data stored in memory.
+    <h3>1. Create User (POST /users)</h3>
+    <p>Create a new user by providing <code>name</code>, <code>email</code>, and <code>age</code>.</p>
 
-## API Endpoints
-
-### 1. Create User (POST /users)
-Create a new user by providing `name`, `email`, and `age`.
-
-#### Request Body:
-```json
+    <h4>Request Body:</h4>
+    <pre>
 {
     "name": "John Doe",
     "email": "john.doe@example.com",
     "age": 30
 }
-```
+    </pre>
 
-#### Response:
-- **201 Created** - Returns the created user object.
-- **400 Bad Request** - If required fields are missing or email is invalid.
+    <h4>Response:</h4>
+    <ul>
+        <li><strong>201 Created</strong> - Returns the created user object.</li>
+        <li><strong>400 Bad Request</strong> - If required fields are missing or email is invalid.</li>
+    </ul>
 
-### 2. Get User by ID (GET /users/:id)
-Fetch a user by their unique `id`.
+    <h3>2. Get User by ID (GET /users/:id)</h3>
+    <p>Fetch a user by their unique <code>id</code>.</p>
 
-#### Example Request:
-```bash
-GET /users/123e4567-e89b-12d3-a456-426614174000
-```
+    <h4>Example Request:</h4>
+    <pre>GET /users/123e4567-e89b-12d3-a456-426614174000</pre>
 
-#### Response:
-- **200 OK** - Returns the user object.
-- **404 Not Found** - If the user does not exist.
+    <h4>Response:</h4>
+    <ul>
+        <li><strong>200 OK</strong> - Returns the user object.</li>
+        <li><strong>404 Not Found</strong> - If the user does not exist.</li>
+    </ul>
 
-### 3. Update User (PUT /users/:id)
-Update a user by `id`. You can update any of the following fields: `name`, `email`, or `age`.
+    <h3>3. Update User (PUT /users/:id)</h3>
+    <p>Update a user by <code>id</code>. You can update any of the following fields: <code>name</code>, <code>email</code>, or <code>age</code>.</p>
 
-#### Example Request:
-```json
+    <h4>Example Request:</h4>
+    <pre>
 {
     "name": "Jane Doe",
     "age": 25
 }
-```
+    </pre>
 
-#### Response:
-- **200 OK** - Returns the updated user object.
-- **404 Not Found** - If the user does not exist.
-- **400 Bad Request** - If the email format is invalid.
+    <h4>Response:</h4>
+    <ul>
+        <li><strong>200 OK</strong> - Returns the updated user object.</li>
+        <li><strong>404 Not Found</strong> - If the user does not exist.</li>
+        <li><strong>400 Bad Request</strong> - If the email format is invalid.</li>
+    </ul>
 
-### 4. Delete User (DELETE /users/:id)
-Delete a user by their unique `id`.
+    <h3>4. Delete User (DELETE /users/:id)</h3>
+    <p>Delete a user by their unique <code>id</code>.</p>
 
-#### Example Request:
-```bash
-DELETE /users/123e4567-e89b-12d3-a456-426614174000
-```
+    <h4>Example Request:</h4>
+    <pre>DELETE /users/123e4567-e89b-12d3-a456-426614174000</pre>
 
-#### Response:
-- **200 OK** - Returns a success message.
-- **404 Not Found** - If the user does not exist.
+    <h4>Response:</h4>
+    <ul>
+        <li><strong>200 OK</strong> - Returns a success message.</li>
+        <li><strong>404 Not Found</strong> - If the user does not exist.</li>
+    </ul>
 
-### 5. List All Users (GET /users)
-Fetch all users stored in the API.
+    <h3>5. List All Users (GET /users)</h3>
+    <p>Fetch all users stored in the API.</p>
 
-#### Example Request:
-```bash
-GET /users
-```
+    <h4>Example Request:</h4>
+    <pre>GET /users</pre>
 
-#### Response:
-- **200 OK** - Returns a list of all users.
+    <h4>Response:</h4>
+    <ul>
+        <li><strong>200 OK</strong> - Returns a list of all users.</li>
+    </ul>
 
-## Input Validation
-- **Email validation**: The API ensures that the email provided follows a proper format using a regular expression.
-- **Missing fields**: If any required fields (`name`, `email`, or `age`) are missing in the request body, the API will return a **400 Bad Request** response.
+    <h2>Input Validation</h2>
+    <ul>
+        <li><strong>Email validation</strong>: The API ensures that the email provided follows a proper format using a regular expression.</li>
+        <li><strong>Missing fields</strong>: If any required fields (<code>name</code>, <code>email</code>, or <code>age</code>) are missing in the request body, the API will return a <strong>400 Bad Request</strong> response.</li>
+    </ul>
 
-## Running the API
+    <h2>Running the API</h2>
 
-### Prerequisites
-Ensure you have **Node.js** installed. If not, you can download it from [nodejs.org](https://nodejs.org/).
+    <h3>Prerequisites</h3>
+    <p>Ensure you have <strong>Node.js</strong> installed. If not, you can download it from <a href="https://nodejs.org/">nodejs.org</a>.</p>
 
-### 1. Install Dependencies
+    <h3>1. Install Dependencies</h3>
+    <p>Install the required dependencies by running:</p>
+    <pre>npm install express body-parser uuid</pre>
 
-Install the required dependencies by running:
+    <h3>2. Run the Server</h3>
+    <p>Start the server by running the following command:</p>
+    <pre>node app.js</pre>
+    <p>The server will start and the API will be available at <code>http://localhost:3000</code>.</p>
 
-```bash
-npm install express body-parser uuid
-```
+    <h3>Example API Usage</h3>
 
-### 2. Run the Server
+    <div class="example">
+        <h4>Create a User (POST /users)</h4>
+        <pre>curl -X POST http://localhost:3000/users -H "Content-Type: application/json" -d '{"name": "John Doe", "email": "john.doe@example.com", "age": 30}'</pre>
+    </div>
 
-Start the server by running the following command:
+    <div class="example">
+        <h4>Get a User by ID (GET /users/<user_id>)</h4>
+        <pre>curl http://localhost:3000/users/<user_id></pre>
+    </div>
 
-```bash
-node app.js
-```
+    <div class="example">
+        <h4>Update a User (PUT /users/<user_id>)</h4>
+        <pre>curl -X PUT http://localhost:3000/users/<user_id> -H "Content-Type: application/json" -d '{"age": 31}'</pre>
+    </div>
 
-The server will start and the API will be available at `http://localhost:3000`.
+    <div class="example">
+        <h4>Delete a User (DELETE /users/<user_id>)</h4>
+        <pre>curl -X DELETE http://localhost:3000/users/<user_id></pre>
+    </div>
 
-### Example API Usage
+    <div class="example">
+        <h4>List All Users (GET /users)</h4>
+        <pre>curl http://localhost:3000/users</pre>
+    </div>
 
-1. **Create a User** (POST /users):
-
-   ```bash
-   curl -X POST http://localhost:3000/users -H "Content-Type: application/json" -d '{"name": "John Doe", "email": "john.doe@example.com", "age": 30}'
-   ```
-
-2. **Get a User by ID** (GET /users/<user_id>):
-
-   ```bash
-   curl http://localhost:3000/users/<user_id>
-   ```
-
-3. **Update a User** (PUT /users/<user_id>):
-
-   ```bash
-   curl -X PUT http://localhost:3000/users/<user_id> -H "Content-Type: application/json" -d '{"age": 31}'
-   ```
-
-4. **Delete a User** (DELETE /users/<user_id>):
-
-   ```bash
-   curl -X DELETE http://localhost:3000/users/<user_id>
-   ```
-
-5. **List All Users** (GET /users):
-
-   ```bash
-   curl http://localhost:3000/users
-   ```
-
-## Folder Structure
-
-```
+    <h2>Folder Structure</h2>
+    <pre>
 - app.js           # Main API logic (server and routes)
 - package.json     # Project dependencies and scripts
 - README.md        # API documentation
-```
+    </pre>
 
-## License
+    <h2>License</h2>
+    <p>This project is licensed under the MIT License - see the <code>LICENSE</code> file for details.</p>
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-```
-
-### How to Use the `README.md`:
-1. **Install Dependencies**: Use `npm install` to install the necessary packages (Express, Body-Parser, UUID).
-2. **Run the Server**: Start the API using `node app.js`.
-3. **Make Requests**: You can test the endpoints using `curl` commands as provided in the examples.
-
-This `README.md` file includes detailed instructions on how to set up, run, and interact with your User Management API.
 </body>
 
 </html>
